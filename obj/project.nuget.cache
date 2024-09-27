@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8u8aFALT/LFgmXPqe8cG30PK5ZJ5doiiGZ/K7GbgTcAUbYVUZi944H9ouTwX55pzhQ96egtQV1SoVVCcDCvhGA==",
+  "success": true,
+  "projectFilePath": "/home/maik/DotNet/SensorAPI/SensorAPI.csproj",
+  "expectedPackageFiles": [
+    "/home/maik/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.8/microsoft.aspnetcore.app.ref.8.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}
