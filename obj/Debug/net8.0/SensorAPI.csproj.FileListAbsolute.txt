@@ -24,3 +24,11 @@
 /home/maik/DotNet/SensorAPI/obj/Debug/net8.0/SensorAPI.pdb
 /home/maik/DotNet/SensorAPI/obj/Debug/net8.0/SensorAPI.genruntimeconfig.cache
 /home/maik/DotNet/SensorAPI/obj/Debug/net8.0/ref/SensorAPI.dll
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/API_Testing/SensorAPI/bruno.json
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/home/maik/DotNet/SensorAPI/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/maik/DotNet/SensorAPI/obj/Debug/net8.0/SensorAPI.csproj.AssemblyReference.cache
+/home/maik/DotNet/SensorAPI/obj/Debug/net8.0/SensorAPI.csproj.CopyComplete

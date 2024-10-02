@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SensorAPI.Models;
 using SensorAPI.EFCore;
 using SensorAPI.Services;
 
@@ -17,16 +18,32 @@ var moistureSensor = app.MapGroup("/moisture");
 
 #region MoistureEndpoints
 
-moistureSensor.MapPost("/{deviceId}", PostforPlant);
+moistureSensor.MapPost("/{deviceId}/{value}", PostforPlant);
+moistureSensor.MapPost("/addsensor", AddSensor);
 #endregion
 
 app.Run();
 
 #region Methods
 
-static async Task<IResult> PostforPlant(Guid deviceId)
+static async Task<IResult> PostforPlant(int deviceId, int value, SensorAPIDbContext dbContext)
 {
-    throw new NotImplementedException();
+    var plant = await dbContext.Plants
+    .Where(s => s.SensorId == deviceId).FirstOrDefaultAsync();
+
+    if(plant is null)
+        return TypedResults.NotFound();
+
+    plant.WaterLevel = value;
+    await dbContext.SaveChangesAsync();
+    return TypedResults.Ok();
+}
+
+static async Task<IResult> AddSensor(Sensor newSensor, SensorAPIDbContext dbContext)
+{
+    dbContext.Sensors.Add(newSensor);
+    await dbContext.SaveChangesAsync();
+    return TypedResults.Created();
 }
 
 #endregion
