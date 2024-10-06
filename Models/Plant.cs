@@ -9,6 +9,5 @@ public class Plant{
     public string PlantName {get; set;} = "";
     public int WaterLevel {get; set;}
     public bool NeedsWater => WaterLevel > 20;
-    public int SensorId {get; set;}
-    public Sensor? Sensor {get; set;} 
+    public List<Device>? Devices {get; set;} = [];
 }

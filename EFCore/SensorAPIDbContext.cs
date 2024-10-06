@@ -9,20 +9,21 @@ public class SensorAPIDbContext : DbContext{
     }
     
     public DbSet<Sensor> Sensors => Set<Sensor>();
+    public DbSet<Device> Devices => Set<Device>();
     public DbSet<Plant> Plants => Set<Plant>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Sensor>()
-            .HasOne(s => s.Plant)
-            .WithOne(s => s.Sensor)
-            .HasForeignKey<Plant>(s => s.SensorId)
-            .IsRequired();
+            .HasOne(s => s.Device)
+            .WithMany(d => d.AttachedSensors)
+            .HasForeignKey(s => s.DeviceId)
+            .IsRequired(false);
 
-        modelBuilder.Entity<Plant>()
-            .HasOne(p => p.Sensor)
-            .WithOne(p => p.Plant)
-            .HasForeignKey<Plant>(s => s.SensorId)
-            .IsRequired();
+        modelBuilder.Entity<Device>()
+            .HasOne(p => p.Plant)
+            .WithMany(p => p.Devices)
+            .HasForeignKey(s => s.PlantId)
+            .IsRequired(false);
     }
 }
