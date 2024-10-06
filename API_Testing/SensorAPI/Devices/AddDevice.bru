@@ -1,0 +1,17 @@
+meta {
+  name: AddDevice
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://{{baseUrl}}:5273/{{deviceGroup}}/add
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "deviceType" : 0
+  }
+}

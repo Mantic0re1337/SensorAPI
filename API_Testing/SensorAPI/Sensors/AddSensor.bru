@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: http://{{baseUrl}}:5273/moisture/addsensor
+  url: http://{{baseUrl}}:5273/{{sensorGroup}}/add
   body: json
   auth: none
 }
@@ -13,7 +13,6 @@ post {
 body:json {
   {
     "SType" : 0,
-    "ModelName" : "ESP32-C3",
-    "PlantId" : 1
+    "ModelName" : "C-Moist"
   }
 }

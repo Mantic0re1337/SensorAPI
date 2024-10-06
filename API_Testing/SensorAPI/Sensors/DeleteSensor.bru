@@ -1,0 +1,11 @@
+meta {
+  name: DeleteSensor
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://{{baseUrl}}:5273/{{sensorGroup}}/remove/1
+  body: none
+  auth: none
+}

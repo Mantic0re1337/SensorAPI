@@ -1,0 +1,11 @@
+meta {
+  name: UpdateSensor
+  type: http
+  seq: 2
+}
+
+patch {
+  url: http://{{baseUrl}}:5273/{{sensorGroup}}/update/
+  body: none
+  auth: none
+}

@@ -38,6 +38,8 @@ devices.MapPatch("/update/{id}", UpdateDevice);
 plants.MapPost("/add", AddPlant);
 plants.MapDelete("/remove/{id}", RemovePlant);
 plants.MapPatch("/update/{id}", UpdatePlant);
+plants.MapGet("/askPlant/{id}", GetWaterLevel);
+plants.MapPatch("/updateWater/{id}", UpdateWaterLevel);
 #endregion
 
 app.Run();
@@ -48,7 +50,7 @@ static async Task<IResult> AddSensor(Sensor newSensor, SensorAPIDbContext dbCont
 {
     dbContext.Sensors.Add(newSensor);
     await dbContext.SaveChangesAsync();
-    return TypedResults.Created();
+    return TypedResults.Created("/sensors/add", newSensor.Id);
 }
 
 static async Task<IResult> RemoveSensor(int id, SensorAPIDbContext dbContext){
@@ -67,7 +69,7 @@ static async Task<IResult> UpdateSensor(int id, Sensor update, SensorAPIDbContex
 static async Task<IResult> AddDevice(Device newDevice, SensorAPIDbContext dbContext){
     dbContext.Devices.Add(newDevice);
     await dbContext.SaveChangesAsync();
-    return TypedResults.Created();
+    return TypedResults.Created("/devices/add", newDevice.Id);
 }
 
 static async Task<IResult> RemoveDevice(int id, SensorAPIDbContext dbContext){
@@ -86,7 +88,7 @@ static async Task<IResult> UpdateDevice(int id, Device update, SensorAPIDbContex
 static async Task<IResult> AddPlant(Plant newPlant, SensorAPIDbContext dbContext){
     dbContext.Plants.Add(newPlant);
     await dbContext.SaveChangesAsync();
-    return TypedResults.Created();
+    return TypedResults.Created("/plants/add", newPlant.Id);
 }
 
 static async Task<IResult> RemovePlant(int id, SensorAPIDbContext dbContext){
@@ -100,6 +102,18 @@ static async Task<IResult> UpdatePlant(int id, Plant update, SensorAPIDbContext 
     plant.UpdatePlantFields(update);
     await dbContext.SaveChangesAsync(); 
     return TypedResults.Accepted($"/plant/update/{id}");
+}
+
+static async Task<IResult> UpdateWaterLevel(int id, int waterLevel, SensorAPIDbContext dbContext){
+    var plant = dbContext.Plants.First(p => p.Id == id);
+    plant.WaterLevel = waterLevel;
+    await dbContext.SaveChangesAsync();
+    return TypedResults.Ok();
+}
+
+static IResult GetWaterLevel(int id, SensorAPIDbContext dbContext){
+    var plant = dbContext.Plants.First(p => p.Id == id);
+    return TypedResults.Ok(plant.WaterLevel); 
 }
 
 #endregion

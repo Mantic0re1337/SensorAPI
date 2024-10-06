@@ -1,0 +1,18 @@
+meta {
+  name: AddPlant
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://{{baseUrl}}:5273/{{plantGroup}}/add
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "plantName" : "Monstera Jr.",
+    "WaterLevel" : 69
+  }
+}
